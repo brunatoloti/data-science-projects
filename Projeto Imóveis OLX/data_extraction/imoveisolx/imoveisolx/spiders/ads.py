@@ -23,7 +23,8 @@ class AdsSpider(scrapy.Spider):
         ads_squares = response.xpath("//li[@class='sc-1fcmfeb-2 juiJqh']/a/@href").getall()
         for ad in ads_squares:
             yield scrapy.Request(url=ad, callback=self.parse_detail)
-        next_page = response.xpath('//a[@class="sc-1fvtocd-1 ijrAQg"]/@href')
+        # next_page = response.xpath('//a[@class="sc-1fvtocd-1 ijrAQg"]/@href')
+        next_page = response.xpath("//a[@data-lurker-detail='next_page']/@href")
         if next_page:
             yield scrapy.Request(url=next_page.extract_first(), callback=self.parse)
 
@@ -71,6 +72,10 @@ class AdsSpider(scrapy.Spider):
             "//dt[contains(text(), 'Bairro')]/following-sibling::dd/text()"
         ).extract_first()
 
+        preco = response.xpath(
+            "//h2[@class='sc-ifAKCX eQLrcK']/text()"
+        ).extract_first()
+
         yield {
             'categoria': categoria,
             'tipo': tipo,
@@ -83,6 +88,7 @@ class AdsSpider(scrapy.Spider):
             'cidade': cidade,
             'estado': estado,
             'bairro': bairro,
+            'preco': preco,
             'url': url_anuncio
         }
 
