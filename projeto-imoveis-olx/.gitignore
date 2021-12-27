@@ -1,0 +1,11 @@
+*.csv
+*.zip
+*.json
+*.tar
+__pycache__
+.ipynb_checkpoints
+.env
+output
+logs
+*.db
+*.pid
