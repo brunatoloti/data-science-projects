@@ -1,0 +1,25 @@
+version: '3'
+services:
+  airflow:
+    container_name: airflow
+    build: .
+    ports:
+    - "8080:8080"
+    environment:
+      AIRFLOW__CORE__SQL__ALCHEMY_CONN: 'postgresql+psycopg2://airflow:airflow@postgres:5432/airflow'
+      _AIRFLOW_WWW_USER_USERNAME: 'admin'
+      _AIRFLOW_WWW_USER_PASSWORD: 'admin'
+    volumes:
+      - .:/projeto-imoveis-olx
+    depends_on:
+      - postgres
+  
+  postgres:
+    container_name: postgres
+    image: 'postgres:11'
+    ports:
+      - "55432:5432"
+    environment:
+      POSTGRES_USER: 'airflow'
+      POSTGRES_PASSWORD: 'airflow'
+      POSTGRES_DB: 'airflow'
