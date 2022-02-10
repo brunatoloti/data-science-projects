@@ -22,6 +22,7 @@ CREATE DATABASE airflow;
 GRANT ALL PRIVILEGES ON DATABASE airflow TO airflow;
 ```
 Os valores de usuário, senha e nome do database podem ser de sua escolha, mas será necessário mudar o valor da variável sql_alchemy_conn no airflow.cfg, caso seja diferente dos aqui propostos.
+
 5. Caso queira usar o executor SequentialExecutor, é só alterar a variável de LocalExecutor para SequentialExecutor e descomentar a variável sql_alchemy_conn que está comentada e comentar a que não está comentada no airflow.cfg. Com isso, será usado o sqlite.
 6. Após tudo isso, inicialize o airflow:
 ```
