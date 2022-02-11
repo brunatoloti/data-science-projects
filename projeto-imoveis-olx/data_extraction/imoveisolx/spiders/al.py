@@ -81,7 +81,7 @@ class AdsSpider(scrapy.Spider):
 
 def run():
     process = CrawlerProcess({'FEED_EXPORT_ENCODING': 'UTF-8',
-                              'FEED_URI': 'file:/c/Users/Admin/Documents/Data_Science/data-science-projects/projeto-imoveis-olx/data_extraction/imoveisolx/output/al_extract.json',
+                              'FEED_URI': 'file:/projeto-imoveis-olx/data_extraction/imoveisolx/output/al_extract.json',
                               'CONCURRENT_REQUESTS': '55',
                               'DOWNLOAD_DELAY': '0.5',
                               'RANDOMIZE_DOWNLOAD_DELAY': False,
