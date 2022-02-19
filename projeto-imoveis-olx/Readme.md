@@ -29,5 +29,15 @@ docker-compose build
 docker-compose up
 ```
 
-3. Inicializado o airflow, acesse ```localhost:8080```.
-4. Rode a DAG.
+3. Como ao fazer o docker-compose up o postgres estará rodando, em outra janela do terminal acesso o banco que será onde vamos armazenar os dados coletados:
+```
+docker exec -it postgres  bash
+```
+```
+psql -U airflow
+```
+
+4. Crie a tabela imoveisolx no banco, com as colunas id,categoria,tipo,quartos,banheiros,vagas_garagem,detalhes_imovel,detalhes_condominio,cep,cidade,estado,bairro,preco,url,created_at, que são as informações que pegamos do site.
+OBS.: id é um serial primary key e created_at é timestamp default now().
+5. Inicializado o airflow, acesse ```localhost:8080```.
+6. Rode a DAG. Os dados serão inseridos nessa tabela criada.
