@@ -82,12 +82,14 @@ class AdsSpider(scrapy.Spider):
 
 def run():
     process = CrawlerProcess({'FEED_EXPORT_ENCODING': 'UTF-8',
-                              'FEED_URI': 'file:/projeto-imoveis-olx/data_extraction/imoveisolx/output/ce_extract.json',
                               'CONCURRENT_REQUESTS': '55',
                               'DOWNLOAD_DELAY': '0.5',
                               'RANDOMIZE_DOWNLOAD_DELAY': False,
                               'COOKIES_ENABLED': False,
                               'LOG_LEVEL': 'INFO',
+                              'ITEM_PIPELINES': {
+                                  'data_extraction.imoveisolx.pipelines.Pipeline': 300
+                              },
                               'USER_AGENT': [(
                                   'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.125 Safari/537.36'
                               )]})
