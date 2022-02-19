@@ -10,3 +10,4 @@ logs
 *.db
 *.pid
 .Rhistory
+postgres-data
