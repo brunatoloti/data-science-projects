@@ -41,3 +41,6 @@ psql -U airflow
 OBS.: id é um serial primary key e created_at é timestamp default now().
 5. Inicializado o airflow, acesse ```localhost:8080```.
 6. Rode a DAG. Os dados serão inseridos nessa tabela criada.
+7. Espere mais um pouco para a inicialização do dashboard shiny. Quando aparecer
+```shiny       | Listening on http://0.0.0.0:3838```,
+acesse ```localhost:3838``` para ver o dashboard.
