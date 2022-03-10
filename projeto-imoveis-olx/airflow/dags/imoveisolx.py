@@ -1,5 +1,6 @@
 from datetime import timedelta
 from airflow.operators.bash_operator import BashOperator
+from airflow.operators.dummy_operator import DummyOperator
 from airflow import DAG
 import pendulum
 
@@ -17,6 +18,7 @@ with DAG('crawler-imoveis-olx',
          description='DAG CRAWLER IMOVEIS OLX',
          schedule_interval=None
          ) as dag:
+    dummy = DummyOperator(task_id='Dummy')
     ac = BashOperator(task_id='ac',
                       bash_command='python3 /projeto-imoveis-olx/data_extraction/imoveisolx/spiders/ac.py')
     al = BashOperator(task_id='al',
@@ -71,14 +73,17 @@ with DAG('crawler-imoveis-olx',
                       bash_command='python3 /projeto-imoveis-olx/data_extraction/imoveisolx/spiders/to.py')
     sp = BashOperator(task_id='sp',
                       bash_command='python3 /projeto-imoveis-olx/data_extraction/imoveisolx/spiders/sp.py')
+    cleaning = BashOperator(task_id='clean',
+                            bash_command='python3 /projeto-imoveis-olx/data_exploration_and_visualization/data_cleaning.py')
 
-    ac >> al >> am >> ap
-    ba >> ce >> df >> es
-    go >> ma >> mg >> ms
-    mt >> pa >> pb >> pe
-    pi >> rj >> rs >> ro
-    rr >> sc >> se >> to
-    sp >> pr >> rn
+    ac >> al >> am >> ap >> dummy
+    ba >> ce >> df >> es >> dummy
+    go >> ma >> mg >> ms >> dummy
+    mt >> pa >> pb >> pe >> dummy
+    pi >> rj >> rs >> ro >> dummy
+    rr >> sc >> se >> to >> dummy
+    sp >> pr >> rn >> dummy
+    dummy >> cleaning
 
 if __name__ == '__main__':
     dag.cli()
