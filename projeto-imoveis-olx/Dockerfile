@@ -4,7 +4,13 @@ RUN apt-get update \
     && apt-get install -y \
         python3-pip \
         python-dev \
-        libpq-dev
+        libpq-dev \
+        r-base \
+        r-cran-plotly \
+        libudunits2-dev \
+        libgdal-dev \
+        libgeos-dev \
+        libproj-dev
 
 COPY . /projeto-imoveis-olx
 ENV WORKDIR='/projeto-imoveis-olx'

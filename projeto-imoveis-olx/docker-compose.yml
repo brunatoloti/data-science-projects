@@ -25,3 +25,17 @@ services:
       POSTGRES_DB: 'airflow'
     volumes:
       - ./postgres-data:/var/lib/postgresql/data
+
+  shiny:
+    container_name: shiny
+    image: 'rocker/shiny:latest'
+    ports:
+     - "3838:3838"
+    volumes:
+      - .:/projeto-imoveis-olx
+    depends_on:
+     - postgres
+     - airflow
+    expose:
+      - "3838"
+    command: "/bin/bash /projeto-imoveis-olx/entrypoint_r.sh"
