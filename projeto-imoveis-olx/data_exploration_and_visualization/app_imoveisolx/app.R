@@ -34,9 +34,7 @@ cabecalho <- dashboardHeader(title = 'Dashboard Imóveis OLX')
 barra_lateral <- dashboardSidebar(sidebarMenu(
     menuItem('Dashboard',
              tabName = 'dashboard',
-             icon = icon('dashboard'),
-             badgeLabel = '23 Dez 2021',
-             badgeColor = 'blue'),
+             icon = icon('dashboard')),
     menuItem('Filtros',
              tabName = 'filtros',
              icon = icon('filter'),
