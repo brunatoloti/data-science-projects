@@ -16,9 +16,17 @@ library(shinydashboard)
 library(shinyWidgets)
 library(geobr)
 library(leaflet)
+library(RPostgres)
+library(DBI)
 
 
-dados <- fread('/projeto-imoveis-olx/data_extraction/imoveisolx/output/dados_limpos.csv', encoding = 'UTF-8')
+
+con <- dbConnect(RPostgres::Postgres(), dbname = "airflow",
+                              host = "postgres", port = 5432,
+                              user = "airflow", password = "airflow")
+
+dados <- dbGetQuery(con, 'select * from imoveisolx_transformed')
+
 states <- read_state(year=2020)
 
 cabecalho <- dashboardHeader(title = 'Dashboard Imóveis OLX')
