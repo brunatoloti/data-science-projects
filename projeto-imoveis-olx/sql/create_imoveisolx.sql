@@ -1,0 +1,16 @@
+create table imoveisolx (
+ id serial primary key not null,
+ categoria varchar(255),
+ tipo varchar(255),
+ quartos varchar(15),
+ banheiros varchar(15),
+ vagas_garagem varchar(15),
+ detalhes_imovel text,
+ detalhes_condominio text,
+ cep varchar(10),
+ cidade varchar(255),
+ estado varchar(2),
+ bairro varchar(255),
+ preco varchar(255),
+ url text,
+ created_at timestamp not null default now());
