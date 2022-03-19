@@ -58,4 +58,4 @@ build\<pasta-criada-dentro-de-build-com-exe>\screenshot_para_texto.exe
 ```
 
 ### Funcionando
-<img src="https://github.com/brunatoloti/data-science-projects/blob/main/projeto-screenshot-para-texto/img/captura.gif" width="500" height="500" />
+<img src="https://github.com/brunatoloti/data-science-projects/blob/main/projeto-screenshot-para-texto/img/captura.gif" />
