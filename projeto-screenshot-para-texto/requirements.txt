@@ -1,0 +1,8 @@
+opencv-python
+pyautogui
+pytesseract
+pandas
+numpy
+ttkthemes
+ttkbootstrap
+cx-Freeze
