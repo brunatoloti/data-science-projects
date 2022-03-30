@@ -49,10 +49,17 @@ psql -U airflow
 - Com as tabelas já criadas e tendo o airflow pronto para uso, ou seja, já inicializado pelo docker-compose, acessamos
 ```localhost:8080```
 e fazemos o trigger da DAG **crawler-imoveis-olx** de forma que o processo de extração e limpeza dos dados seja iniciado.
+![airflow-imoveis](https://user-images.githubusercontent.com/56737588/160815220-e4db0d55-7c03-4a7f-a22f-91383b9033f8.PNG)
+
 - **Caso seja a primeira vez**, deve-se esperar a DAG finalizar a execução para que tenhamos gráficos no dashboard.
 - De qualquer forma, tendo o shiny pronto para uso, ou seja, já inicializado pelo docker-compose, acessamos
 ```localhost:3838```
 para vermos o dashboard.
+![dashboard-imoveis-1](https://user-images.githubusercontent.com/56737588/160821471-4ee240ea-7f89-4fc0-ab7a-33fa64103dd3.PNG)
+![dashboard-imoveis-2](https://user-images.githubusercontent.com/56737588/160821493-228b73a3-3b12-4668-a411-c3701147a549.PNG)
+![dashboard-imoveis-3](https://user-images.githubusercontent.com/56737588/160821554-0016fa8a-f8b9-4a5f-a705-783810aa6069.PNG)
+![dashboard-imoveis-4](https://user-images.githubusercontent.com/56737588/160821568-d30f227f-d201-4fa4-92b6-316d4f3a77ab.PNG)
+![dashboard-imoveis-5](https://user-images.githubusercontent.com/56737588/160821579-519b8e31-cda8-4d75-9e2b-db26a7868a26.PNG)
 
 #### Pastas:
 - Na pasta **airflow**, estão presentes os arquivos e pastas referentes ao airflow, incluindo o código da DAG.
