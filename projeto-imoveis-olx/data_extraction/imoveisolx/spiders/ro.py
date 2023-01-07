@@ -8,7 +8,7 @@ class AdsSpider(scrapy.Spider):
     start_urls = ['https://ro.olx.com.br/imoveis/venda', 'https://ro.olx.com.br/imoveis/aluguel']
 
     def parse(self, response):
-        ads_squares = response.xpath("//ul[@class='sc-1fcmfeb-1 kntIvV']/li/a/@href").getall()
+        ads_squares = response.xpath("//ul[@id='ad-list']/li/a/@href").getall()
         for ad in ads_squares:
             yield scrapy.Request(url=ad, callback=self.parse_detail)
         next_page = response.xpath("//a[@data-lurker-detail='next_page']/@href")

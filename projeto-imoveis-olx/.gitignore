@@ -11,3 +11,4 @@ logs
 *.pid
 .Rhistory
 postgres-data
+pio-venv

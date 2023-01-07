@@ -13,6 +13,8 @@ services:
       - .:/projeto-imoveis-olx
     depends_on:
       - postgres
+    restart: always
+
   
   postgres:
     container_name: postgres
