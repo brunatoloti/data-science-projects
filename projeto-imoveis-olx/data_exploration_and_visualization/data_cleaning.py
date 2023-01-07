@@ -41,6 +41,7 @@ def cleaning():
     df.detalhes_condominio = df.detalhes_condominio.fillna('Não informado')
     df.bairro = df.bairro.fillna('Não informado')
     df = df[~df.categoria.isin(['Aluguel - casas e apartamentos', 'Temporada'])]
+    df = df.query("preco <= 30000000")
 
     df_tipo_nao_informado = df[df.tipo.isin(['Não informado'])]
     df_tipo_informado = df[~df.tipo.isin(['Não informado'])]
