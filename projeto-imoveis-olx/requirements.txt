@@ -10,3 +10,5 @@ croniter
 plotly
 kaleido
 seaborn
+shiny
+matplotlib

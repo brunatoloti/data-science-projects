@@ -16,7 +16,7 @@ app_ui = ui.page_fluid(
         """
         .app-col {
             border-radius: 0px;
-            background-color: rgb(128, 128, 128);
+            background-color: #606060;
             padding: 20px;
             margin-top: 0px;
             margin-bottom: 5px;
@@ -24,7 +24,7 @@ app_ui = ui.page_fluid(
         }
         .value-box {
             border-radius: 5px;
-            background-color: rgb(128, 128, 128);
+            background-color: #606060;
             padding: 20px;
             margin-top: 0px;
             margin-bottom: 5px;
@@ -132,6 +132,22 @@ app_ui = ui.page_fluid(
                         ui.output_plot("qtd_garagem"),
                     )
                 )
+            ),
+            ui.row(
+                ui.column(
+                    6,
+                    ui.div(
+                        {"class": "graphs"},
+                        ui.output_plot("dist_preco_quartos")
+                    )
+                ),
+                ui.column(
+                    6,
+                    ui.div(
+                        {"class": "graphs"},
+                        ui.output_plot("dist_preco_banheiros")
+                    )
+                )
             )
         )
     )
@@ -174,10 +190,12 @@ def server(input, output, session):
     @render.plot
     def qtd_categoria():
         sns.set(rc={'axes.facecolor':(0,0,0,0), 'figure.facecolor':(0,0,0,0)})
-        ax = sns.countplot(x=dados_selecionados()["categoria"], color='#212D30')
-        ax.set_xlabel('Quantidade de categoria')
+        ax = sns.countplot(x=dados_selecionados()["categoria"], color='#404040')
+        ax.set_xlabel('')
         ax.set_ylabel('Quantidade de anúncios')
-        ax.set_title('Quantidade de anúncios por categoria')
+        ax.set_title('Quantidade de anúncios por categoria', fontsize=16)
+        for i in ax.containers:
+            ax.bar_label(i,color='#606060',size=10)
         return ax
 
     
@@ -185,10 +203,12 @@ def server(input, output, session):
     @render.plot
     def qtd_operacao():
         sns.set(rc={'axes.facecolor':(0,0,0,0), 'figure.facecolor':(0,0,0,0)})
-        ax = sns.countplot(x=dados_selecionados()["operacao"], color='#212D30')
-        ax.set_xlabel('Quantidade de operacao')
+        ax = sns.countplot(x=dados_selecionados()["operacao"], color='#404040')
+        ax.set_xlabel('')
         ax.set_ylabel('Quantidade de anúncios')
-        ax.set_title('Quantidade de anúncios por operacao')
+        ax.set_title('Quantidade de anúncios por operação', fontsize=16)
+        for i in ax.containers:
+            ax.bar_label(i,color='#606060',size=10)
         return ax
 
 
@@ -196,10 +216,12 @@ def server(input, output, session):
     @render.plot
     def qtd_quartos():
         sns.set(rc={'axes.facecolor':(0,0,0,0), 'figure.facecolor':(0,0,0,0)})
-        ax = sns.countplot(x=dados_selecionados()["quartos"], color='#212D30')
-        ax.set_xlabel('Quantidade de quartos')
+        ax = sns.countplot(x=dados_selecionados()["quartos"], color='#404040')
+        ax.set_xlabel('')
         ax.set_ylabel('Quantidade de anúncios')
-        ax.set_title('Quantidade de anúncios por quantidade de quartos')
+        ax.set_title('Quantidade de anúncios por número de quartos', fontsize=16)
+        for i in ax.containers:
+            ax.bar_label(i,color='#606060',size=10)
         return ax
 
     
@@ -207,10 +229,12 @@ def server(input, output, session):
     @render.plot
     def qtd_banheiros():
         sns.set(rc={'axes.facecolor':(0,0,0,0), 'figure.facecolor':(0,0,0,0)})
-        ax = sns.countplot(x=dados_selecionados()["banheiros"], color='#212D30')
-        ax.set_xlabel('Quantidade de banheiros')
+        ax = sns.countplot(x=dados_selecionados()["banheiros"], color='#404040')
+        ax.set_xlabel('')
         ax.set_ylabel('Quantidade de anúncios')
-        ax.set_title('Quantidade de anúncios por quantidade de banheiros')
+        ax.set_title('Quantidade de anúncios por número de banheiros', fontsize=16)
+        for i in ax.containers:
+            ax.bar_label(i,color='#606060',size=10)
         return ax
 
     
@@ -218,10 +242,36 @@ def server(input, output, session):
     @render.plot
     def qtd_garagem():
         sns.set(rc={'axes.facecolor':(0,0,0,0), 'figure.facecolor':(0,0,0,0)})
-        ax = sns.countplot(x=dados_selecionados()["vagas_garagem"], color='#212D30')
-        ax.set_xlabel('Quantidade de vagas na garagem')
+        ax = sns.countplot(x=dados_selecionados()["vagas_garagem"], color='#404040')
+        ax.set_xlabel('')
         ax.set_ylabel('Quantidade de anúncios')
-        ax.set_title('Quantidade de anúncios por quantidade de vagas na garagem')
+        ax.set_title('Quantidade de anúncios por número de vagas na garagem', fontsize=16)
+        for i in ax.containers:
+            ax.bar_label(i,color='#606060',size=10)
+        return ax
+
+    
+    @output
+    @render.plot
+    def dist_preco_quartos():
+        sns.set(rc={'axes.facecolor':(0,0,0,0), 'figure.facecolor':(0,0,0,0)})
+        ax = sns.boxplot(data=dados_selecionados(), x='quartos', y='preco', color='#404040')
+        ax.set_yscale("log")
+        ax.set_ylabel('Preço')
+        ax.set_xlabel('Quartos')
+        ax.set_title('Distribuição de preços pelo número de quartos', fontsize=16)
+        return ax
+
+    
+    @output
+    @render.plot
+    def dist_preco_banheiros():
+        sns.set(rc={'axes.facecolor':(0,0,0,0), 'figure.facecolor':(0,0,0,0)})
+        ax = sns.boxplot(data=dados_selecionados(), x='banheiros', y='preco', color='#404040')
+        ax.set_yscale("log")
+        ax.set_ylabel('Preço')
+        ax.set_xlabel('Banheiros')
+        ax.set_title('Distribuição de preços pelo número de banheiros', fontsize=16)
         return ax
        
 
